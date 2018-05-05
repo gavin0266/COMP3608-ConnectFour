@@ -64,7 +64,7 @@ public class BitBoard {
 	}
 	
 	public BitBoard() {
-		// TODO Auto-generated constructor stub
+
 	}
 	
 	public void updateTokenCount() {
@@ -79,7 +79,6 @@ public class BitBoard {
 			newBoard.height[i] = this.height[i];
 		}
 		newBoard.winning_sums = new int[] {winning_sums[0], winning_sums[1]};
-//		newBoard.countToken = this.countToken;
 		
 		return newBoard;
 	}
@@ -150,14 +149,10 @@ public class BitBoard {
 	}
 	
 	public boolean canPlay(int col) {
-//		long tempBoard = bitboard[0] | bitboard[1];
-//		print(tempBoard);
 		return (height[col] - H1*col) < HEIGHT;
-//		return (tempBoard != topMask(col));
 	}
 	
 	public void play(int col, int player) {
-//		winning_sums[player-1] = 0;
 		winning_sums[player-1] += WINNING_LINES[height[col]%WIDTH][col];
 		long move = 1L << height[col]++;
 		bitboard[player-1] ^= move;
@@ -295,7 +290,7 @@ public class BitBoard {
 		return result;
 	}
 	
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		long startTime = System.nanoTime();
 		BitBoard bitboard = new BitBoard("r.ryr.r,..yyy..,.......,.......,.......,.......,.......");
 //		bitboard.print(bitboard.bitboard[0]);
@@ -321,5 +316,5 @@ public class BitBoard {
 //		System.out.print(bitboard.utility());
 		//		bitboard.printBitBoard(2);
 //		System.out.println();
-	}
+	}*/
 }

@@ -61,13 +61,8 @@ public class ConnectFour {
 	private BitBoard maxValueBB(BitBoard b, int depth, int alpha, int beta) {
 		nodeCount++;
 		
-		//Terminal Node
-		
-		
+		//Terminal Node	
 		int checkWin = b.utility(depth);	
-		
-//		b.print(b.bitboard[1]);
-//		System.out.println(checkWin);
 		
 		if(checkWin != 0) {
 			b.value = checkWin;
@@ -91,24 +86,12 @@ public class ConnectFour {
 				
 				fullBoard = false;
 				cb.play(moveOrder[col], ((player+depth-1)%2)+1);
-//				
-//				if(depth==12 && col == 2) {
-//					cb.print(cb.findThreat(1));
-//					cb.print(cb.findThreat(2));
-//					cb.print(cb.bitboard[0]);
-//					cb.print(cb.bitboard[1]);
-//					System.out.println(cb.evaluation());
-//					System.exit(1);
-//				}
-				
+
 				if(depth==0)
 					cb.col = moveOrder[col];
 				cb = minValueBB(cb, 1+depth, alpha, beta);
 				if(depth==0) {
-//					if(col == 0) {
-//						checkLost = cb.value;
-//					}
-//					checkLost = Integer.min(checkLost, cb.value);
+
 					System.out.println("col: " + moveOrder[col] + " val: " + cb.value);
 				}
 				//Pruning
@@ -166,19 +149,6 @@ public class ConnectFour {
 					cb.col = moveOrder[col];
 				cb = maxValueBB(cb, 1+depth, alpha, beta);
 				
-//				if(depth==0) {
-//
-//					System.out.println("col: " + moveOrder[col] + " val: " + cb.value);
-//				}
-//				
-//				if(depth==11 && col == 2) {
-//					cb.print(cb.findThreat(1));
-//					cb.print(cb.findThreat(2));
-//					cb.print(cb.bitboard[0]);
-//					cb.print(cb.bitboard[1]);
-//					System.out.println(cb.evaluation());
-//					System.exit(1);
-//				}
 				
 				//Pruning
 				if(cb.value <= alpha) {
@@ -220,7 +190,6 @@ public class ConnectFour {
 			if(move.value > 9997)
 				return -1;
 		}
-//		System.out.println(move.value);
 		
 		
 		return move.col;
@@ -229,51 +198,8 @@ public class ConnectFour {
 	public int tournament() {
 		nodeCount = 0;
 		BitBoard board = new BitBoard(state);
-		board.play(3, 1);
-		board.play(3, 2);
-		board.play(1, 1);
-		board.play(2, 2);
-		board.play(2, 1);
-		board.play(3, 2);
-		board.play(2, 1);
-		board.play(3, 2);
-		board.play(3, 1);
-		board.play(2, 2);
-		board.play(2, 1);
-		board.play(3, 2);
-		board.play(5, 1);
-		board.play(6, 2);
-		board.play(5, 1);
-		board.play(2, 2);
-		board.play(6, 1);
-		board.play(5, 2);
-		board.play(5, 1);
-		board.play(6, 2);
-		board.play(5, 1);
-		board.play(4, 2);
-		board.play(1, 1);
-		board.play(1, 2);
-		board.play(0, 1);
-		board.play(4, 2);
-		board.play(4, 1);
-		board.play(1, 2);
-//		board.play(4, 1);
-//		board.play(0, 2);
-//		board.play(0, 1);
-//		board.play(6, 2);
-//		board.play(0, 1);
-//		board.play(0, 2);
-//		board.play(0, 1);
-//		board.play(2, 2);
-//		bitboardABSearch(board);
-//		board.print(board.bitboard[0]);
-//		board.print(board.bitboard[1]);
-//		board.print(board.bitboard[1] | board.bitboard[0]);
-//		System.out.println(bitboardABSearch(board));
-//		int col = bitboardABSearch(board);
-//		System.out.println(nodeCount);
 		
-		board.updateTokenCount();
+		// board.updateTokenCount();
 		
 		if(board.countToken == 4 && board.height[3] == 25) {
 			return 3;
@@ -317,25 +243,6 @@ public class ConnectFour {
 		long endTime = System.nanoTime();
 		long duration = (endTime - startTime);
 		double seconds = (double)duration / 1000000000.0;
-//		System.out.println(seconds);
-		
-//		long startTime = System.nanoTime();
-//		int d = 1;
-//		double seconds = 0f;
-//		long endTime;
-//		long duration;
-//		while(seconds < 0.992) {
-//			System.out.println("depth: " +  d);
-//			ConnectFour connectFour = new ConnectFour(".ryyrry,.rryry.,..y.r..,..y....,.......,.......", "red", 'A', d);
-//			connectFour.tournament();
-//			endTime = System.nanoTime();
-//			duration = (endTime - startTime);
-//			seconds = (double)duration / 1000000000.0;
-//			d++;
-//			System.out.println(seconds);
-//		}
-//		
-		
 		
 	}
 }
